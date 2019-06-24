@@ -1,0 +1,6 @@
+#!/usr/bin/with-contenv bash
+
+if [[ -f /app ]]
+then
+    chown abc:abc /app
+fi
