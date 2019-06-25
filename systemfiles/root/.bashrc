@@ -1,1 +1,3 @@
-sh /etc/motd
+alias ls="ls --color=auto"
+
+. /etc/motd
