@@ -1,0 +1,21 @@
+#!/bin/bash
+
+CWD=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+PARENT_DIR=$( dirname "${CWD}" )
+
+LABEL_NAME=${DOCKER_REPO}
+LABEL_VERSION=${DOCKER_TAG}
+LABEL_BUILD_DATE=$( date -u +"%Y-%m-%dT%H:%M:%SZ" )
+LABEL_VCS_REF=$( git rev-parse --short HEAD )
+
+labels=$( sed 's/^/--label /' "${PARENT_DIR}/.docker-labels" )
+
+cmd="docker build ${labels} \
+    --file "${PARENT_DIR}/Dockerfile" \
+    --tag "${IMAGE_NAME}" \
+    "${PARENT_DIR}/""
+
+echo
+echo $cmd
+eval $cmd
+echo
