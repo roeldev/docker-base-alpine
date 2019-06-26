@@ -20,32 +20,20 @@ then
     )
 fi
 
-BUILD_DATE=$( date -u +"%Y-%m-%dT%H:%M:%SZ" )
-GIT_REF=$( git rev-parse --short HEAD )
+cmd="docker build \
+    --label \"maintainer=${MAINTAINER}\" \
+    --label \"description=${DESCRIPTION}\" \
+    --label \"org.label-schema.name=${DOCKER_REPO}\" \
+    --label \"org.label-schema.version=${DOCKER_TAG}\" \
+    --label \"org.label-schema.build-date=${BUILD_DATE}\" \
+    --label \"org.label-schema.vcs-ref=${GIT_REF}\" \
+    --label \"org.label-schema.vcs-url=https://github.com/${GITHUB_REPO}\" \
+    --label \"org.label-schema.schema-version=1.0\" \
+    --file \"${PARENT_DIR}/Dockerfile\" \
+    --tag \"${IMAGE_NAME}\" \
+    \"$( realpath "${PARENT_DIR}/${BUILD_CONTEXT:-}" )\""
 
 echo
-echo "docker build \
-    --label "maintainer=${MAINTAINER}" \
-    --label "description=${DESCRIPTION}" \
-    --label "org.label-schema.name=${DOCKER_REPO}" \
-    --label "org.label-schema.version=${DOCKER_TAG}" \
-    --label "org.label-schema.build-date=${BUILD_DATE}" \
-    --label "org.label-schema.vcs-ref=${GIT_REF}" \
-    --label "org.label-schema.vcs-url=https://github.com/${GITHUB_REPO}" \
-    --label "org.label-schema.schema-version=1.0" \
-    --file "${PARENT_DIR}/Dockerfile" \
-    --tag "${IMAGE_NAME}" \
-    "$( realpath "${PARENT_DIR}/${BUILD_CONTEXT:-}" )""
-
-docker build \
-    --label "maintainer=${MAINTAINER}" \
-    --label "description=${DESCRIPTION}" \
-    --label "org.label-schema.name=${DOCKER_REPO}" \
-    --label "org.label-schema.version=${DOCKER_TAG}" \
-    --label "org.label-schema.build-date=${BUILD_DATE}" \
-    --label "org.label-schema.vcs-ref=${GIT_REF}" \
-    --label "org.label-schema.vcs-url=https://github.com/${GITHUB_REPO}" \
-    --label "org.label-schema.schema-version=1.0" \
-    --file "${PARENT_DIR}/Dockerfile" \
-    --tag "${IMAGE_NAME}" \
-    "$( realpath "${PARENT_DIR}/${BUILD_CONTEXT:-}" )"
+echo ${cmd}
+eval ${cmd}
+echo
