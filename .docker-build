@@ -1,0 +1,3 @@
+MAINTAINER=roeldev
+DESCRIPTION="A custom base image based on Alpine Linux with S6 overlay"
+GITHUB_REPO=roeldev/docker-base-alpine
