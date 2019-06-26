@@ -11,6 +11,7 @@ RUN set -x \
 # create actual image
 FROM scratch
 COPY --from=base / /
+COPY systemfiles/ /
 
 # environment variables
 ENV ENV="/etc/motd" \
@@ -18,5 +19,7 @@ ENV ENV="/etc/motd" \
     HOME="/root" \
     TERM="xterm-256color"
 
-COPY systemfiles/ /
+RUN set -x \
+ && chmod +x /docker-mods
+
 ENTRYPOINT ["/init"]
