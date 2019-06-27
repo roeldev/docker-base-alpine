@@ -20,6 +20,9 @@ then
     )
 fi
 
+BUILD_DATE=$( date -u +"%Y-%m-%dT%H:%M:%SZ" )
+GIT_REF=$( git rev-parse --short HEAD )
+
 cmd="docker build \
     --label \"maintainer=${MAINTAINER}\" \
     --label \"description=${DESCRIPTION}\" \
