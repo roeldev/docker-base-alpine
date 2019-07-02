@@ -1,0 +1,25 @@
+sudo: required
+dist: xenial
+language: minimal
+services:
+  - docker
+
+env:
+  global:
+    - MAINTAINER=roeldev
+    - GITHUB_REPO=roeldev/docker-base-alpine
+    - DOCKER_REPO=roeldev/base-alpine
+  matrix:
+    - ALPINE_VERSION=3.9
+    - ALPINE_VERSION=3.10
+
+script:
+  - chmod ugo+x build/build.sh
+  - build/build.sh $ALPINE_VERSION
+
+before_deploy:
+  - docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
+
+deploy:
+  provider: script
+  script: docker push $DOCKER_REPO
