@@ -1,6 +1,12 @@
 sudo: required
 dist: xenial
 language: minimal
+
+branches:
+  only:
+    - /^v.*$/
+    - develop
+
 services:
   - docker
 
