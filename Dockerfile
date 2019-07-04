@@ -4,10 +4,11 @@ FROM alpine:${ALPINE_VERSION} as base
 RUN set -x \
  && apk update \
  && apk add \
-    bash \
-    tar \
-    tzdata \
-    xz \
+    --no-cache \
+        bash \
+        tar \
+        tzdata \
+        xz \
  && mkdir /root-out
 
 # vars used in mkimage-alpine.bash script
@@ -39,20 +40,28 @@ ADD https://github.com/just-containers/s6-overlay/releases/download/${OVERLAY_VE
 RUN set -x \
  && tar xfz /s6-overlay.tar.gz -C /root-out
 
+# create script to return current alpine version
+WORKDIR /root-out/usr/local/bin
+RUN set -x \
+ && echo "#!/bin/sh" >> alpine_version \
+ && echo "echo \"${ALPINE_VERSION}\"" >> alpine_version \
+ && chmod +x alpine_version
+
+###############################################################################
 # create actual image
+###############################################################################
 FROM scratch
 COPY --from=base /root-out /
 
 # environment variables
-ARG ALPINE_VERSION
-ENV ALPINE_VERSION="${ALPINE_VERSION}" \
-    ENV="/etc/motd" \
+ENV ENV="/etc/motd" \
     PS1="$(whoami)@$(hostname):$(pwd) \\$ " \
-    HOME="/root" \
-    TERM="xterm-256color"
+    PUID=911 \
+    GUID=911
 
 RUN set -x \
  && apk update \
+ && apk upgrade --no-cache \
  && apk add --no-cache \
         bash \
         ca-certificates \

@@ -8,8 +8,7 @@ usermod -o -u "$PUID" abc
 
 echo "
 -------------------------------------
-GID/UID
-User uid:    $(id -u abc)
-User gid:    $(id -g abc)
+User uid:  $( id -u abc )
+User gid:  $( id -g abc )
 -------------------------------------
 "

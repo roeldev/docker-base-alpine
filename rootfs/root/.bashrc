@@ -1,3 +1,3 @@
 alias ls="ls --color=auto"
 
-. /etc/motd
+source /etc/motd
