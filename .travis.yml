@@ -15,6 +15,7 @@ env:
     - MAINTAINER=roeldev
     - GITHUB_REPO=roeldev/docker-base-alpine
     - DOCKER_REPO=roeldev/base-alpine
+    - BUILD_ARGS=ALPINE_VERSION
   matrix:
     - ALPINE_VERSION=3.9
     - ALPINE_VERSION=3.10

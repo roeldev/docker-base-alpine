@@ -1,4 +1,4 @@
-ARG ALPINE_VERSION
+ARG ALPINE_VERSION="3.9"
 FROM alpine:${ALPINE_VERSION} as base
 
 RUN set -x \
