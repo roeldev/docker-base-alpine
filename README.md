@@ -35,3 +35,6 @@ A custom base image build with Alpine Linux and S6 overlay. Inspired by LinuxSer
 
 ## Inspired by
 - https://github.com/linuxserver/
+
+## License
+[GPL-3.0+](LICENSE) © 2019 [Roel Schut](https://roelschut.nl)
