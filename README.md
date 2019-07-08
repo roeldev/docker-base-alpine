@@ -2,18 +2,24 @@ docker-base-alpine
 ==================
 
 [![Latest release][latest-release-img]][latest-release-url]
-[![Build status][build-status-img]][build-status-url]
+[![Travis build status][travis-build-img]][travis-build-url]
+[![Docker build status][docker-build-img]][docker-build-url]
+[![Docker Hub downloads][docker-pulls-img]][docker-pulls-url]
 
 [latest-release-img]: https://img.shields.io/github/release/roeldev/docker-base-alpine.svg?label=latest
 [latest-release-url]: https://github.com/roeldev/docker-base-alpine/releases
-[build-status-img]: https://img.shields.io/travis/roeldev/docker-base-alpine.svg
-[build-status-url]: https://travis-ci.org/roeldev/docker-base-alpine
+[travis-build-img]: https://img.shields.io/travis/roeldev/docker-base-alpine.svg
+[travis-build-url]: https://travis-ci.org/roeldev/docker-base-alpine
+[docker-build-img]: https://img.shields.io/docker/cloud/build/roeldev/base-alpine.svg
+[docker-build-url]: https://hub.docker.com/r/roeldev/base-alpine
+[docker-pulls-img]: https://img.shields.io/docker/pulls/roeldev/base-alpine.svg
+[docker-pulls-url]: https://hub.docker.com/r/roeldev/base-alpine
 
 
 A custom base image build with Alpine Linux and S6 overlay. Inspired by LinuxServer.io's `docker-baseimage-alpine`.
 
 
-# Versions
+## Versions
 
 | Image | Info |
 |-------|------|
@@ -28,8 +34,8 @@ A custom base image build with Alpine Linux and S6 overlay. Inspired by LinuxSer
 
 
 ## Links
-- Github: https://github.com/roeldev/docker-base-alpine
-- Docker hub: https://hub.docker.com/r/roeldev/base-alpine
+- GitHub: https://github.com/roeldev/docker-base-alpine
+- Docker Hub: https://hub.docker.com/r/roeldev/base-alpine
 - Alpine Linux: https://alpinelinux.org/
 - S6 overlay: https://github.com/just-containers/s6-overlay
 
