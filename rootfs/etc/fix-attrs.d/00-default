@@ -1,0 +1,2 @@
+/etc/motd.d true abc:abc 0750 0640
+/usr/local/bin/ true abc:abc 0750 0640
