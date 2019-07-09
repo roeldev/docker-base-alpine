@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  travis:
+    image: roeldev/base-alpine:${ALPINE_VERSION}-${IMAGE_TAG}
+    build:
+      context: .
+      args:
+        ALPINE_VERSION: "${ALPINE_VERSION}"
+
+  local:
+    image: roeldev/base-alpine:local
+    container_name: base-alpine
+    build: .

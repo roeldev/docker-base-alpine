@@ -15,14 +15,16 @@ env:
     - MAINTAINER=roeldev
     - GITHUB_REPO=roeldev/docker-base-alpine
     - DOCKER_REPO=roeldev/base-alpine
-    - BUILD_ARGS=ALPINE_VERSION
   matrix:
     - ALPINE_VERSION=3.9
     - ALPINE_VERSION=3.10
 
+before_script:
+  - git clone git://github.com/roeldev/travis-ci-scripts.git
+  - chmod ugo+x travis-scripts/docker-build.sh
+
 script:
-  - chmod ugo+x build/build.sh
-  - build/build.sh $ALPINE_VERSION
+  - travis-scripts/docker-build.sh
 
 before_deploy:
   - docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
