@@ -1,11 +1,11 @@
 CONTAINER=base-alpine
 
 .PHONY it:
-it: build start
+it: build tag start
 
 .PHONY build:
 build:
-	docker-compose build local
+	docker-compose build --force-rm local
 
 .PHONY start:
 start:
@@ -18,6 +18,10 @@ stop:
 
 .PHONY restart:
 restart: stop start
+
+.PHONY tag:
+tag:
+	docker tag roeldev/base-alpine:local roeldev/base-alpine:3.9-v1
 
 .PHONY login:
 login:
