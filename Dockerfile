@@ -44,8 +44,7 @@ RUN set -x \
 WORKDIR /root-out/usr/local/bin
 RUN set -x \
  && echo "#!/bin/sh" >> alpine_version \
- && echo "echo \"${ALPINE_VERSION}\"" >> alpine_version \
- && chmod +x alpine_version
+ && echo "echo \"${ALPINE_VERSION}\"" >> alpine_version
 
 ###############################################################################
 # create actual image
@@ -57,21 +56,28 @@ COPY --from=base /root-out /
 ENV ENV="/etc/motd" \
     PS1="$(whoami)@$(hostname):$(pwd) \\$ " \
     PUID=911 \
-    GUID=911
+    PGID=911
 
 RUN set -x \
  && apk update \
  && apk upgrade --no-cache \
- && apk add --no-cache \
+ && apk add \
+    --no-cache \
         bash \
         ca-certificates \
         coreutils \
         nano \
         shadow \
         tzdata \
- && groupmod -g 1000 users \
- && useradd -u 911 -U -d /config -s /bin/false abc \
- && usermod -G users abc
+ && mkdir -p /config \
+ && groupmod --gid 1000 users \
+ && useradd \
+    --user-group \
+    --uid 911 \
+    --home-dir /config \
+    --shell /bin/false \
+    abc \
+ && usermod --groups users abc
 
 # add local files
 COPY rootfs/ /
