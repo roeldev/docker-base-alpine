@@ -66,7 +66,6 @@ RUN set -x \
         bash \
         ca-certificates \
         coreutils \
-        nano \
         shadow \
         tzdata \
  && mkdir -p /config \
