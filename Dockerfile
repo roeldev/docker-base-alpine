@@ -3,6 +3,7 @@ FROM alpine:${ALPINE_VERSION} as base
 
 RUN set -x \
  && apk update \
+ # add dependencies
  && apk add \
     --no-cache \
         bash \
@@ -38,7 +39,7 @@ ARG OVERLAY_ARCH="amd64"
 # download s6-overlay
 ADD https://github.com/just-containers/s6-overlay/releases/download/${OVERLAY_VERSION}/s6-overlay-${OVERLAY_ARCH}.tar.gz /s6-overlay.tar.gz
 RUN set -x \
- && tar xfz /s6-overlay.tar.gz -C /root-out
+ && tar xzf /s6-overlay.tar.gz -C /root-out
 
 # create script to return current alpine version
 WORKDIR /root-out/usr/local/bin
@@ -52,7 +53,7 @@ RUN set -x \
 FROM scratch
 COPY --from=base /root-out /
 
-# environment variables
+# environment variables, these may be changed using docker cli
 ENV ENV="/etc/motd" \
     PS1="$(whoami)@$(hostname):$(pwd) \\$ " \
     PUID=911 \
@@ -60,7 +61,9 @@ ENV ENV="/etc/motd" \
 
 RUN set -x \
  && apk update \
+ # upgrade installed programs to latest version
  && apk upgrade --no-cache \
+ # add basic programs
  && apk add \
     --no-cache \
         bash \
@@ -68,7 +71,7 @@ RUN set -x \
         coreutils \
         shadow \
         tzdata \
- && mkdir -p /config \
+ # set group and user
  && groupmod --gid 1000 users \
  && useradd \
     --user-group \
@@ -76,7 +79,10 @@ RUN set -x \
     --home-dir /config \
     --shell /bin/false \
     abc \
- && usermod --groups users abc
+ && usermod --groups users abc \
+ # make alpine_version executable so it can be used
+ # in commands in other Dockerfiles
+ && chmod +x /usr/local/bin/alpine_version
 
 # add local files
 COPY rootfs/ /
