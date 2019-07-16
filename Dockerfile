@@ -72,12 +72,13 @@ RUN set -x \
         shadow \
         tzdata \
  # set group and user
- && groupmod --gid 1000 users \
- && useradd \
-    --user-group \
-    --uid 911 \
-    --home-dir /config \
-    --shell /bin/false \
+ && addgroup -g 911 -S abc \
+ && adduser \
+    -D -H -S \
+    -u 911 \
+    -h /app \
+    -s /sbin/nologin \
+    -G abc \
     abc \
  && usermod --groups users abc \
  # make alpine_version executable so it can be used
