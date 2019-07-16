@@ -1,4 +1,4 @@
-/config/            true    abc:abc     0755 0755
+/app/               true    abc:abc     0755 0755
 /etc/motd           true    root:root   0755 0755
 /etc/motd.d/        true    root:root   0755 0755
 /usr/local/bin/     true    root:root   0755 0755
