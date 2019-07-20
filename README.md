@@ -33,6 +33,29 @@ A custom base image build with Alpine Linux and S6 overlay. Inspired by LinuxSer
 [mb-3.10-url]: https://microbadger.com/images/roeldev/base-alpine:3.10-latest
 
 
+## Environment variables
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| PUID | | Highly recommended, see below for explanation.
+| PGID | | Highly recommended, see below for explanation.
+| DISPLAY_MOTD | true | Set to `true` to display system info at container startup.
+| VERBOSE_INIT | false | Set to `true` to verbose execute init commands. Helpful to see what's happening during container startup.
+
+
+## User and group identifiers
+When using volumes (`-v` flags) permissions issues can arise between the host OS and the container. This issue is avoided by allowing you to specify the user `PUID` and group `PGID`.
+
+Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will be resolved.
+
+To find yours use `id user` as below. This will result in `PUID=1000` and `PGID=100`.
+
+```
+  $ id user
+    uid=1000(user) gid=100(group) groups=100(group)
+```
+
+
 ## Links
 - GitHub: https://github.com/roeldev/docker-base-alpine
 - Docker Hub: https://hub.docker.com/r/roeldev/base-alpine

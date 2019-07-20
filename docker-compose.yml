@@ -12,3 +12,5 @@ services:
     image: roeldev/base-alpine:local
     container_name: base-alpine
     build: .
+    environment:
+      - VERBOSE_INIT=true
