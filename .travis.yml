@@ -34,3 +34,4 @@ deploy:
   script: docker push $DOCKER_REPO
   on:
     tags: true
+    all_branches: true

@@ -32,15 +32,32 @@ A custom base image build with Alpine Linux and S6 overlay. Inspired by LinuxSer
 [mb-3.10-img]: https://images.microbadger.com/badges/image/roeldev/base-alpine:3.10-latest.svg
 [mb-3.10-url]: https://microbadger.com/images/roeldev/base-alpine:3.10-latest
 
+Tags are organized as followed:
+- `latest` points to the highest available release version (which is not always the latest)
+- `v1` points to the latest minor/patch release within this major 
+- `v1.1` points to the latest patch within this minor release
+- `v1.1.2` points to a specific release
+- `experimental` most up to date (non-stable) build from the `develop` branch, it is not recommended to use this 
+version in production
+
+Have a look at the above MicroBadger page of a specific release to see which tags point to the same image build.
+
+
+## Volumes
+
+| Path | Description |
+|------|-------------|
+| `/app/config/` | Contains all (system) config related files that might be customized to your needs
+
 
 ## Environment variables
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| PUID | | Highly recommended, see below for explanation.
-| PGID | | Highly recommended, see below for explanation.
-| DISPLAY_MOTD | true | Set to `true` to display system info at container startup.
-| VERBOSE_INIT | false | Set to `true` to verbose execute init commands. Helpful to see what's happening during container startup.
+| `PUID` | | Highly recommended, see below for explanation.
+| `PGID` | | Highly recommended, see below for explanation.
+| `DISPLAY_MOTD` | `true` | Set to `true` to display system info at container startup.
+| `VERBOSE_INIT` | `false` | Set to `true` to verbose execute init commands. Helpful to see what's happening during container startup.
 
 
 ## User and group identifiers
