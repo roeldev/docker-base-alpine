@@ -47,17 +47,17 @@ Have a look at the above MicroBadger page of a specific release to see which tag
 
 | Path | Description |
 |------|-------------|
-| /app/config/ | Contains all (system) config related files that might be customized to your needs
+| `/app/config/` | Contains all (system) config related files that might be customized to your needs
 
 
 ## Environment variables
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| PUID | | Highly recommended, see below for explanation.
-| PGID | | Highly recommended, see below for explanation.
-| DISPLAY_MOTD | true | Set to `true` to display system info at container startup.
-| VERBOSE_INIT | false | Set to `true` to verbose execute init commands. Helpful to see what's happening during container startup.
+| `PUID` | | Highly recommended, see below for explanation.
+| `PGID` | | Highly recommended, see below for explanation.
+| `DISPLAY_MOTD` | `true` | Set to `true` to display system info at container startup.
+| `VERBOSE_INIT` | `false` | Set to `true` to verbose execute init commands. Helpful to see what's happening during container startup.
 
 
 ## User and group identifiers
