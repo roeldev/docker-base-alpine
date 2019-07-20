@@ -56,8 +56,10 @@ COPY --from=base /root-out /
 # environment variables, these may be changed using docker cli
 ENV ENV="/etc/motd" \
     PS1="$(whoami)@$(hostname):$(pwd) \\$ " \
-    PUID=911 \
-    PGID=911
+    DISPLAY_MOTD="true" \
+    VERBOSE_INIT="false" \
+    PUID="911" \
+    PGID="911"
 
 RUN set -x \
  && apk update \
