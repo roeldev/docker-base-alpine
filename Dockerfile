@@ -90,4 +90,5 @@ RUN set -x \
 # add local files
 COPY rootfs/ /
 
+VOLUME ["/app/config"]
 ENTRYPOINT ["/init"]
