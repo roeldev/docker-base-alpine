@@ -3,8 +3,8 @@
 PUID=${PUID:-911}
 PGID=${PGID:-911}
 
-groupmod -o -g "$PGID" abc
-usermod -o -u "$PUID" abc
+groupmod --non-unique --gid "$PGID" abc
+usermod --non-unique --uid "$PUID" abc
 
 echo "
 -------------------------------------
@@ -13,4 +13,7 @@ User gid:  $( id -g abc )
 -------------------------------------
 "
 
-chown abc:abc /app
+chown \
+    $( if ${VERBOSE_INIT:-false}; then echo '--changes'; fi ) \
+    --recursive \
+    abc:abc /app
