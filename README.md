@@ -47,7 +47,7 @@ Have a look at the above MicroBadger page of a specific release to see which tag
 
 | Path | Description |
 |------|-------------|
-| `/app/config/` | Contains all (system) config related files that might be customized to your needs
+| `/config/` | Contains all (system) config related files that might be customized to your needs
 
 
 ## Environment variables

@@ -21,4 +21,4 @@ cp \
     --archive \
     --no-clobber \
     $( if ${VERBOSE_INIT:-false}; then echo '--verbose'; fi ) \
-    /etc/default-configs/. /app/config/
+    /etc/default-configs/. /config/
